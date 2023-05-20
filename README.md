@@ -1,6 +1,4 @@
-# Ansible-vault 
-
-### whats ansible ? 
+### what's ansible-vault ? 
 
 Ansible Vault is a feature that allows users to encrypt values and data structures within Ansible projects. 
 
