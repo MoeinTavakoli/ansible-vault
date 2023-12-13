@@ -1,96 +1,64 @@
-### what's ansible-vault ? 
+## What is Ansible Vault?
 
-Ansible Vault is a feature that allows users to encrypt values and data structures within Ansible projects. 
+Ansible Vault is a feature that enables users to encrypt values and data structures within Ansible projects. This ensures the security of sensitive data when running Ansible playbooks.
 
 This feature provides the ability to secure sensitive data and keep it safe.
 
-We can use this feature when we want to run an ansible playbook .
+The Ansible Vault feature offers several options for working with encrypted data:
 
-This ability is called `ansible-vault` and has several options to use it 
+- Create
+- Decrypt
+- Edit
+- View
+- Encrypt
+- Encrypt_string
+- Rekey
 
-<ol>
-  <li>create</li>
-  <li>decrypt</li>
-  <li>edit</li>
-  <li>view</li>
-  <li>encrypt</li>
-  <li>encrypt_string</li>
-  <li>rekey</li>
-</ol>
+### Create New Encrypted Files
+To create an encrypted file with Ansible Vault, use the 'create' option. For example:
 
-## Create new encrypted Files
+```bash
+ansible-vault create vault.yml
+```
 
-Let's create an encrypted file with ansible-vault.
+You will be prompted to enter a password for the vault and confirm it. A code editor will then open, allowing you to write content to be encrypted. Save the file and exit to create a new file with encrypted data (`vault.yml`).
 
-To create an encrypted file we use the option `create` .
+### Decrypt Files
+If you have an encrypted file and need to decrypt it, use the 'decrypt' option. For example:
 
-For example --> 
+```bash
+ansible-vault decrypt vault.yml
+```
 
-`ansible-vault create vault.yml`
+You will be prompted to enter the vault password to decrypt the file.
 
-You enter a password for the vault password and confirm this password then a code editor opens that allows you to write something to encrypt it.
+### View Encrypted Files
+To view decrypted data without changing the file, use the 'view' option. For example:
 
-Save this file and exit then you can see a new file created like `vault.yml` with encrypted data.
+```bash
+ansible-vault view vault.yml
+```
 
-## Decrypt Files
+You will be prompted to enter the vault password to decrypt and view the file. The original encrypted file remains unchanged.
 
-For example we have an encrypted file and we want to decrypt it .
+### Encrypt Files
+To encrypt a file and its data, use the 'encrypt' option. For example:
 
-To decrypt files we use the option `decrypt` .
+```bash
+echo "hello my name is Moein" >> greeting.txt
+ansible-vault encrypt greeting.txt
+```
 
-For example --> 
+You will be prompted to enter and confirm a password for the encryption. Upon successful encryption, the file will contain encrypted data.
 
-`ansible-vault decrypt vault.yml`
+### Change the Password of Encrypted File
+To change the password of an encrypted file, use the 'rekey' option. For example:
 
-Then ask for your vault password to decrypt it.
+```bash
+ansible-vault rekey greeting.txt
+```
 
-So when you open this file we can see data that decrypted.
-
-## View Encrypted Files
-
-For example, you want to just see decrypted data and you didn't want to change the file (change encrypted file to decrypt).
-
-In this case, you can use the option `view`.
-
-For example --> 
-
-`ansible-vault view vault.yml`
-
-Then ask for your vault password to decrypt it and print it.
-
-**in this case didn't change your encrypted file**.
-
-
-## Encrypted Files
-
-when you have a file and you want to encrypt this file and data.
-
-In this case, you can use the option `encrypt`.
-
-for example --> 
-
-`echo "hello my name is Moein" >> greeting.txt`
-
-`ansible-vault encrypt greeting.txt`
-
-Then ask for your password and confirm it.
-
-So you can see this message like `Encryption successful`.
-
-If you open the `greeting.txt` file, this file is encrypted and has lots of numbers.
-
-## Change the password of the encrypted file
-
-We want to change the password of an encrypted file.
-
-In this case, you can use the option `rekey`.
-
-for example --> 
-
-`ansible-vault rekey greeting.txt`
-
-Then ask you `previous password` and `new password` and if you enter a the correct value , print this message `Rekey successful`.
-
+You will be prompted to enter the previous password and the new password. Upon successful entry, a message "Rekey successful" will be displayed.
 
 ----
 
